@@ -11,9 +11,11 @@ public class ProductTypeDTO {
         return ProductTypeDTO.builder()
                 .id(productType.getId())
                 .name(productType.getName())
+                .icon(productType.getIcon())
                 .build();
     }
 
     private Integer id;
     private String name;
+    private String icon;
 }

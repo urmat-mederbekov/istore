@@ -1,6 +1,7 @@
 package kg.attractor.istore.dto;
 
 import kg.attractor.istore.model.Product;
+import kg.attractor.istore.model.ProductType;
 import lombok.Builder;
 import lombok.Data;
 
@@ -15,6 +16,7 @@ public class ProductDTO {
                 .image(product.getImage())
                 .quantity(product.getQuantity())
                 .price(product.getPrice())
+                .type(ProductTypeDTO.from(product.getType()))
                 .build();
     }
 
@@ -24,4 +26,5 @@ public class ProductDTO {
     private String image;
     private int quantity;
     private float price;
+    private ProductTypeDTO type;
 }
