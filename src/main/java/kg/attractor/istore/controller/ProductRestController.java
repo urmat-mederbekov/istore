@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +21,11 @@ public class ProductRestController {
     @GetMapping
     public List<ProductDTO> getAll(Pageable pageable){
         return productService.getAll(pageable).getContent();
+    }
+
+    @GetMapping("/search={text}")
+    public List<ProductDTO> search(@PathVariable String text, Pageable pageable){
+        System.out.println(text);
+        return productService.search(text, text, pageable).getContent();
     }
 }
