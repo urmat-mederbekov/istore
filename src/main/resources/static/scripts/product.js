@@ -1,8 +1,7 @@
-
 const baseUrl = 'http://localhost:8080';
 const restUrl = 'http://localhost:8080/api';
-    async function getProducts() {
-    const response = await fetch(restUrl + '/products');
+    async function getProductsById(id) {
+    const response = await fetch(restUrl + "/product-types/" + id + '/products');
     if (response.ok) {
         return await response.json();
     } else {
@@ -10,7 +9,6 @@ const restUrl = 'http://localhost:8080/api';
     }
 }
 async function load(){
-    const products = await getProducts();
     let product_type_id;
     let product_type_name = document.getElementById('product-type').innerHTML.trim().toLocaleLowerCase();
     if(product_type_name === 'iphone')
@@ -24,9 +22,9 @@ async function load(){
     else if(product_type_name === 'apple watch')
         product_type_id = 5;
 
+    const products = await getProductsById(product_type_id);
     products.forEach(product => {
 
-        if(product.type.id === product_type_id){
             let card = document.createElement('div');
             card.className = 'card d-inline-block';
             card.style.width = '18rem';
@@ -40,7 +38,6 @@ async function load(){
 <!--        <a href="#" class="btn btn-primary">Go somewhere</a>-->
         </div>`;
             document.getElementsByClassName('row')[0].append(card);
-        }
     })
 }
 
