@@ -2,7 +2,7 @@
 <#import "partials/main.ftlh" as main />
 
 <#-- обрабатываем его, и передаём ему список скриптов, которые необходимо подключить-->
-<@main.renderWith scripts=["/scripts/product.js"]>
+<@main.renderWith scripts=["/scripts/script.js"]>
 
 <#--
 здесь находится содержимое этой страницы
@@ -11,8 +11,7 @@
 https://freemarker.apache.org/docs/dgui_misc_userdefdir.html
 -->
 
-    <h2 id="product-type">Airpods</h2>
-    <div class="row"></div>
+    Ресурс ${resource} с идентификатором ${id} не найден!
 
 <#--
 здесь мы подставляем содержимое другого "частичного" шаблона
