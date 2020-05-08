@@ -16,4 +16,13 @@ public class ProductService {
     public Page<ProductDTO> getAll(Pageable pageable){
         return productRepo.findAll(pageable).map(ProductDTO::from);
     }
+
+    public Page<ProductDTO> getAllByTypeId(int id, Pageable pageable){
+        return productRepo.findAllByTypeId(id, pageable).map(ProductDTO::from);
+    }
+
+    public Page<ProductDTO> search(String name, String description, Pageable pageable){
+        return productRepo.findAllByNameContainingOrDescriptionContaining(name, description, pageable)
+                .map(ProductDTO::from);
+    }
 }
