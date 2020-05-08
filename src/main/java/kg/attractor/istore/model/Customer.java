@@ -23,7 +23,6 @@ public class Customer {
     private String firstname;
     @Column(length = 128)
     private String lastname;
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "type")
-//    @OrderBy("name ASC")
-//    private List<Product> purchaseList;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Product> products;
 }

@@ -44,6 +44,6 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "productType_id")
     private ProductType type;
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    private List<Customer> customer;
+    @ManyToMany(mappedBy = "products")
+    private List<Customer> customers;
 }
