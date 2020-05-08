@@ -8,3 +8,10 @@ create table `customers` (
     `lastname` varchar(128) NOT NULL,
     PRIMARY KEY (`id`)
 );
+
+create table `customers_products` (
+    `products_id` INT NOT NULL,
+    `customers_id` INT NOT NULL,
+    CONSTRAINT `fk_product__customer` FOREIGN KEY (`products_id`) REFERENCES `products` (`id`),
+    CONSTRAINT `fk_customer__product` FOREIGN KEY (`customers_id`) REFERENCES `customers` (`id`)
+)

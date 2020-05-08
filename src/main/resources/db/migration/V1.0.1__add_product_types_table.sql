@@ -8,7 +8,7 @@ create table `product_types` (
 );
 
 alter table `products`
-add column `product_type_id` INT NOT NULL after `image`, add CONSTRAINT `fk_product	product_types`
+add column `product_type_id` INT NOT NULL after `image`, add CONSTRAINT `fk_product__product_types`
 FOREIGN KEY (`product_type_id`) REFERENCES `product_types` (`id`);
 
 insert into `product_types` (`name`, `icon`) values
