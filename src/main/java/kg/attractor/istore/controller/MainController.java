@@ -25,7 +25,8 @@ public class MainController {
     @GetMapping
     public String index(Model model, Pageable pageable, HttpServletRequest uriBuilder) {
         var products = productService.getAll(pageable);
-        var uri = uriBuilder.getRequestURI();
+        String uri = uriBuilder.getRequestURI();
+
         constructPageable(products, propertiesService.getDefaultPageSize(), model, uri);
 
         return "index";
@@ -42,7 +43,11 @@ public class MainController {
     }
 
     @GetMapping("/airpods")
-    public String getAirpods(){
+    public String getAirpods(Model model, Pageable pageable, HttpServletRequest uriBuilder){
+        var products = productService.getAllByTypeId(4, pageable);
+        var uri = uriBuilder.getRequestURI();
+        constructPageable(products, propertiesService.getDefaultPageSize(), model, uri);
+
         return "airpods";
     }
 

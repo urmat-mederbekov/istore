@@ -15,12 +15,12 @@ https://freemarker.apache.org/docs/dgui_misc_userdefdir.html
         <input type="text" placeholder="Search" name="search" pattern=".{2,}" required>
         <button type="submit">Search</button>
     </form>
-    <section id="products">
+    <section id="products" class="row">
 
     </section>
     <#include "partials/pagination.ftlh">
     <h2>Our products</h2>
-    <div class="row"></div>
+    <div class="row types"></div>
 
 <#--
 здесь мы подставляем содержимое другого "частичного" шаблона

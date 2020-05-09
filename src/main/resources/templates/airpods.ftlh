@@ -13,12 +13,17 @@ https://freemarker.apache.org/docs/dgui_misc_userdefdir.html
 
     <h2 id="product-type">Airpods</h2>
     <div class="row"></div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
 <#--
 здесь мы подставляем содержимое другого "частичного" шаблона
 который отвечает за отображение элементов для постраничного просмотра данных
 https://freemarker.apache.org/docs/ref_directive_include.html
  -->
-<#--    <#include "partials/pagination.ftlh">-->
+    <#include "partials/pagination.ftlh">
 
 </@main.renderWith>
