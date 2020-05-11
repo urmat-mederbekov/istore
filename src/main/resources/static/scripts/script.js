@@ -11,8 +11,7 @@ async function getTypes() {
     }
 }
 async function getProductsByText(text){
-    const response = await fetch(restUrl+'/' +
-        'products/search=' + text);
+    const response = await fetch(restUrl+'/products/search=' + text);
     if(response.ok)
         return await response.json();
     else
@@ -39,12 +38,12 @@ async function load(){
         card.className = 'card d-inline-block';
         card.style.width = '18rem';
         card.innerHTML =
-            `<div class="card d-inline-block" style="width: 18rem">
+            `
                 <img class="card-img-top" style="height: 65%" src="/images/${type.icon}" alt="Card image cap">
                 <div class="card-body"">
                 <h5 class="card-title">${type.name}</h5>
                 </div>
-            </div>`;
+            `;
         document.getElementsByClassName('types')[0].append(card);
     })
 }
@@ -65,8 +64,7 @@ async function search(e) {
             <h5 class="card-title">${product.name}</h5>
             <p class="card-text">${product.description}</p>
             <p class="card-text"><b>Price</b>: ${product.price}$</p>
-<!--        <a href="#" class="btn btn-primary">Go somewhere</a>-->
-        </div>`;
+            </div>`;
         document.getElementById('products').append(card);
     })
 
@@ -76,10 +74,6 @@ const searchForm = document.getElementById('search-form');
 searchForm.addEventListener('submit', search);
 
 load();
-
-
-
-// 'use strict';
 
 const getCurrentPage = () => {
     const loc = (typeof window.location !== 'string') ? window.location.search : window.location;
@@ -105,27 +99,19 @@ const constructGetUrl = (url, queryParams) => {
         card.style.width = '18rem';
         card.style.margin = '0 1rem';
         card.innerHTML =
-            `
-                <img class="card-img-top" src="/images/${product.image}" alt="Card image cap">
-                           <div class="card-body">
-                            <h5 class="card-title">${product.name}</h5>
-                            <p class="card-text">${product.description}</p>
-                            <p class="card-text"><b>Price</b>: ${product.price}$</p>
-                <!--        <a href="#" class="btn btn-primary">Go somewhere</a>-->
-                        </div>
-                `;
+                `<img class="card-img-top" src="/images/${product.image}" alt="Card image cap">
+                 <div class="card-body">
+                    <h5 class="card-title">${product.name}</h5>
+                    <p class="card-text">${product.description}</p>
+                    <p class="card-text"><b>Price</b>: ${product.price}$</p>
+                 </div>`;
 
         return card;
     };
 
     const fetchProducts = async (page, size) => {
-
-        // const placesPath = `${restUrl}/products?page=${page}&size=${size}`;
-        // console.log(placesPath)
         let text = document.querySelector('[name=search]').value;
         const placesPath = `${restUrl}`+ '/products/search=' + text + `?page=${page}&size=${size}`;
-        // console.log(placesPath2)
-
         const data = await fetch(placesPath, {cache: 'no-cache'});
         return data.json();
     };

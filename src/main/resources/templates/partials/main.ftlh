@@ -51,6 +51,12 @@
             <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
             <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a>
             <a class="py-2 d-none d-md-inline-block" href="#">Cart</a>
+            <form class="flex box-128" action="/logout" method="post">
+                <#if _csrf??>
+                    <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
+                </#if>
+                <button class="flex box-128 logout-button">Выйти </button>
+            </form>
         </div>
     </nav>
 

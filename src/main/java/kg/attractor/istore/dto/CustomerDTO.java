@@ -7,19 +7,15 @@ import lombok.Data;
 @Data
 @Builder
 public class CustomerDTO {
-    public static CustomerDTO from(Customer customer){
-        return CustomerDTO.builder()
-                .id(customer.getId())
-                .username(customer.getUsername())
-                .email(customer.getEmail())
-                .firstname(customer.getFirstname())
-                .lastname(customer.getLastname())
+    private int id;
+    private String fullname;
+    private String email;
+
+    public static CustomerDTO from(Customer user) {
+        return builder()
+                .id(user.getId())
+                .fullname(user.getFullname())
+                .email(user.getEmail())
                 .build();
     }
-
-    private Integer id;
-    private String username;
-    private String email;
-    private String firstname;
-    private String lastname;
 }
