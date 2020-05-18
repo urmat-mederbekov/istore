@@ -17,6 +17,8 @@ public class ProductService {
         return productRepo.findAll(pageable).map(ProductDTO::from);
     }
 
+    public ProductDTO getById(Integer id){ return ProductDTO.from(productRepo.findById(id).get());}
+
     public Page<ProductDTO> getAllByTypeId(int id, Pageable pageable){
         return productRepo.findAllByTypeId(id, pageable).map(ProductDTO::from);
     }

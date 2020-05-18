@@ -1,7 +1,6 @@
 package kg.attractor.istore.dto;
 
 import kg.attractor.istore.model.Product;
-import kg.attractor.istore.model.ProductType;
 import lombok.Builder;
 import lombok.Data;
 

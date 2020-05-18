@@ -3,44 +3,44 @@ package kg.attractor.istore.model;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 @Data
-@Table(name="customers")
+@Table(name="carts")
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
-public class Customer {
+public class Cart {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Email
     @NotBlank
     @Size(min = 1, max = 128)
     @Column(length = 128)
-    private String email;
+    private String productName;
 
-    @NotBlank
-    @Size(min = 8, max = 128)
+//    @NotBlank
+//    @Size(min = 1, max = 128)
+//    @Column(length = 128)
+//    private LocalDateTime dateTime;
+
+    @PositiveOrZero
     @Column(length = 128)
-    private String password;
+    private float quantity;
 
-    @NotBlank
-    @Size(min = 1, max = 128)
+    @PositiveOrZero
     @Column(length = 128)
-    private String fullname;
+    @NotNull
+    private float price;
 
-    @Column
-    @Builder.Default
-    private boolean enabled = true;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
-    @NotBlank
-    @Size(min = 1, max = 128)
-    @Column(length = 128)
-    @Builder.Default
-    private String role = "USER";
 }

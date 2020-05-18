@@ -7,14 +7,14 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 @Data
-@Builder
-@AllArgsConstructor(access = AccessLevel.PACKAGE) @NoArgsConstructor
+@Table(name="purchases")
 @Entity
-@Table(name = "products")
-public class Product {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+public class Purchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,27 +23,23 @@ public class Product {
     @NotBlank
     @Size(min = 1, max = 128)
     @Column(length = 128)
-    private String name;
+    private String productName;
 
-    @NotBlank
-    @Size(min = 1, max = 128)
-    @Column(length = 500)
-    private String description;
-
-    @NotBlank
-    @Size(min = 1, max = 128)
-    @Column(length = 128)
-    private String image;
+//    @NotBlank
+//    @Size(min = 1, max = 128)
+//    @Column(length = 128)
+//    private LocalDateTime dateTime;
 
     @PositiveOrZero
     @Column(length = 128)
-    private int quantity;
+    private float quantity;
 
     @PositiveOrZero
     @Column(length = 128)
     @NotNull
     private float price;
+
     @ManyToOne
-    @JoinColumn(name = "productType_id")
-    private ProductType type;
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 }

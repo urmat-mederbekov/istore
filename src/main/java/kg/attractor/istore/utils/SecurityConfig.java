@@ -1,4 +1,4 @@
-package kg.attractor.istore.security;
+package kg.attractor.istore.utils;
 
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true);
 
         http.authorizeRequests()
-                .antMatchers("/profile")
+                .antMatchers("/profile", "/cart")
                 .authenticated();
 
         http.authorizeRequests()

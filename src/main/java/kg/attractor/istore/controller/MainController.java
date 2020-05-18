@@ -11,13 +11,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
+import java.util.HashMap;
 
 @Controller
 @AllArgsConstructor
@@ -25,13 +24,11 @@ public class MainController {
 
     private final ProductService productService;
     private final PropertiesService propertiesService;
-
     private final CustomerService customerService;
 
     @GetMapping("/profile")
     public String pageCustomerProfile(Model model, Principal principal)
     {
-        System.out.println(12);
         var user = customerService.getByEmail(principal.getName());
         model.addAttribute("dto", user);
         return "profile";
@@ -46,21 +43,6 @@ public class MainController {
         return "register";
     }
 
-    @PostMapping("/register")
-    public String registerPage(@Valid CustomerRegisterForm customerRequestDto,
-                               BindingResult validationResult,
-                               RedirectAttributes attributes) {
-        attributes.addFlashAttribute("dto", customerRequestDto);
-
-        if (validationResult.hasFieldErrors()) {
-            attributes.addFlashAttribute("errors", validationResult.getFieldErrors());
-            return "redirect:/register";
-        }
-
-        customerService.register(customerRequestDto);
-        return "redirect:/login";
-    }
-
     @GetMapping("/login")
     public String loginPage(@RequestParam(required = false, defaultValue = "false") Boolean error, Model model) {
         model.addAttribute("error", error);
@@ -68,50 +50,69 @@ public class MainController {
     }
 
     @GetMapping
-    public String index(Model model, Pageable pageable, HttpServletRequest uriBuilder) {
+    public String index(Model model, Pageable pageable, HttpServletRequest uriBuilder, HttpSession session) {
         var products = productService.getAll(pageable);
         String uri = uriBuilder.getRequestURI();
+
+        var map = new HashMap<String, Object>();
+
+        session.getAttributeNames()
+                .asIterator()
+                .forEachRemaining(key -> map.put(key, session.getAttribute(key).toString()));
 
         constructPageable(products, propertiesService.getDefaultPageSize(), model, uri);
 
         return "index";
     }
 
-    @GetMapping("/iphones")
-    public String getIphones(){
-        return "iphone";
-    }
-
-    @GetMapping("/macs")
-    public String getMacs(){
-        return "mac";
-    }
-
     @GetMapping("/airpods")
     public String getAirpods(Model model, Pageable pageable, HttpServletRequest uriBuilder){
+        model.addAttribute("product", "Airpods");
         var products = productService.getAllByTypeId(4, pageable);
         var uri = uriBuilder.getRequestURI();
         constructPageable(products, propertiesService.getDefaultPageSize(), model, uri);
 
-        return "airpods";
+        return "product";
+    }
+
+    @GetMapping("/iphones")
+    public String getIphones(Model model, Pageable pageable, HttpServletRequest uriBuilder){
+        model.addAttribute("product", "Iphone");
+        var products = productService.getAllByTypeId(1, pageable);
+        var uri = uriBuilder.getRequestURI();
+        constructPageable(products, propertiesService.getDefaultPageSize(), model, uri);
+
+        return "product";
+    }
+
+    @GetMapping("/macs")
+    public String getMacs(Model model, Pageable pageable, HttpServletRequest uriBuilder){
+        model.addAttribute("product", "Mac");
+        var products = productService.getAllByTypeId(3, pageable);
+        var uri = uriBuilder.getRequestURI();
+        constructPageable(products, propertiesService.getDefaultPageSize(), model, uri);
+
+        return "product";
     }
 
     @GetMapping("/ipads")
-    public String getIpads(){
-        return "ipad";
+    public String getIpads(Model model, Pageable pageable, HttpServletRequest uriBuilder){
+        model.addAttribute("product", "Ipad");
+        var products = productService.getAllByTypeId(2, pageable);
+        var uri = uriBuilder.getRequestURI();
+        constructPageable(products, propertiesService.getDefaultPageSize(), model, uri);
+
+        return "product";
     }
 
     @GetMapping("/apple-watches")
-    public String getAppleWatches(){
-        return "apple_watch";
-    }
+    public String getAppleWatches(Model model, Pageable pageable, HttpServletRequest uriBuilder){
+        model.addAttribute("product", "Apple Watch");
+        var products = productService.getAllByTypeId(5, pageable);
+        var uri = uriBuilder.getRequestURI();
+        constructPageable(products, propertiesService.getDefaultPageSize(), model, uri);
 
-    @ExceptionHandler(ResourceNotFoundException.class)
-    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-    private String handleRNF(ResourceNotFoundException ex, Model model) {
-        model.addAttribute("resource", ex.getResource());
-        model.addAttribute("id", ex.getId());
-        return "resource-not-found";
+        return "product";
     }
 
     private static <T> void constructPageable(Page<T> list, int pageSize, Model model, String uri) {
@@ -131,5 +132,13 @@ public class MainController {
 
     private static String constructPageUri(String uri, int page, int size) {
         return String.format("%s?page=%s&size=%s", uri, page, size);
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    private String handleRNF(ResourceNotFoundException ex, Model model) {
+        model.addAttribute("resource", ex.getResource());
+        model.addAttribute("id", ex.getId());
+        return "resource-not-found";
     }
 }

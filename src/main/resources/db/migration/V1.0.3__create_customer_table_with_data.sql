@@ -11,9 +11,12 @@ CREATE TABLE `customers` (
      UNIQUE INDEX `email_unique` (`email` ASC)
 );
 
-create table `customers_products` (
-    `products_id` INT NOT NULL,
-    `customers_id` INT NOT NULL,
-    CONSTRAINT `fk_product__customer` FOREIGN KEY (`products_id`) REFERENCES `products` (`id`),
-    CONSTRAINT `fk_customer__product` FOREIGN KEY (`customers_id`) REFERENCES `customers` (`id`)
+create table `carts` (
+    `id` int auto_increment NOT NULL,
+    `product_name` varchar(128) NOT NULL,
+    `quantity` float not null,
+    `price` float not null,
+    `customer_id` int NOT NULL,
+    FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
+    PRIMARY KEY (`id`)
 )

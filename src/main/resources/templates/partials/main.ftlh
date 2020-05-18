@@ -11,9 +11,20 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+        <!-- csrf meta tags -->
+
+        <meta name="_csrf_header" content="${_csrf.parameterName!'csrf'}">
+        <meta name="_csrf_token" content="${_csrf.token!'no token'}">
+
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <meta name="theme-color" content="#563d7c">
+
+        <!-- Jquery -->
+        <script
+                src="https://code.jquery.com/jquery-3.5.0.js"
+                integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+                crossorigin="anonymous"></script>
 
 
         <style>
@@ -41,16 +52,10 @@
     <#--<h1>Hello, world!</h1>-->
     <nav class="site-header sticky-top py-1">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2" href="#" aria-label="Product">
+            <a class="py-2" href="/" aria-label="Product">
                 <img src="/images/apple_logo.png" class="d-block mx-auto" role="img" height="24" width="24" alt="">
             </a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Cart</a>
+            <a class="py-2 d-none d-md-inline-block" href="/cart">Cart</a>
             <form class="flex box-128" action="/logout" method="post">
                 <#if _csrf??>
                     <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>

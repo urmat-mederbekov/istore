@@ -25,7 +25,10 @@ public class ProductRestController {
 
     @GetMapping("/search={text}")
     public List<ProductDTO> search(@PathVariable String text, Pageable pageable){
-        System.out.println(text);
         return productService.search(text, text, pageable).getContent();
+    }
+    @GetMapping("/id={typeId}")
+    public List<ProductDTO> getAllByiD(@PathVariable String typeId, Pageable pageable){
+        return productService.getAllByTypeId(Integer.parseInt(typeId), pageable).getContent();
     }
 }
