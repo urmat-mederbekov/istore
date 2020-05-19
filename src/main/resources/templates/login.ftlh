@@ -25,6 +25,7 @@
 
         </form>
         <div class="bottom-box">
+            <a href="/forgot-password">Восстановить пароль</a>
             <a href="/">На главную страницу</a>
         </div>
     </div>

@@ -4,7 +4,7 @@
 
 <h1>Ваши покупки</h1>
 <div id="cart"></div>
-<#if purchases??>
+<#if items??>
 <table class="table">
     <thead class="thead-dark">
     <tr>
@@ -14,13 +14,13 @@
         <th scope="col">Price</th>
     </tr>
     </thead>
-    <#list purchases as purchase>
+    <#list items as item>
     <tbody>
-    <tr id="${purchase.id}">
-        <th scope="row">${purchase?counter}</th>
-        <td>${purchase.productName}</td>
-        <td>${purchase.quantity}</td>
-        <td>${purchase.price}$</td>
+    <tr id="${item.id}">
+        <th scope="row">${item?counter}</th>
+        <td>${item.productName}</td>
+        <td>${item.quantity}</td>
+        <td>${item.price}$</td>
     </tr>
     </tbody>
 </#list>
@@ -28,6 +28,7 @@
 <#else>
     <p>тут ничего нет!</p>
 </#if>
+    <#include "partials/pagination.ftlh">
 <div>
     <a href="/">назад</a>
 </div>

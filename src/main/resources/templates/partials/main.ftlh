@@ -55,12 +55,18 @@
             <a class="py-2" href="/" aria-label="Product">
                 <img src="/images/apple_logo.png" class="d-block mx-auto" role="img" height="24" width="24" alt="">
             </a>
+
+            <a class="py-2 d-none d-md-inline-block" href="/register">Register</a>
+            <a class="py-2 d-none d-md-inline-block" href="/login">Login</a>
             <a class="py-2 d-none d-md-inline-block" href="/cart">Cart</a>
+            <a class="py-2 d-none d-md-inline-block" href="/purchases">Purchases</a>
+            <a class="py-2 d-none d-md-inline-block" href="/profile">Profile</a>
+
             <form class="flex box-128" action="/logout" method="post">
                 <#if _csrf??>
                     <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
                 </#if>
-                <button class="flex box-128 logout-button">Выйти </button>
+                <button class="py-2 d-none d-md-inline-block logout-button">Выйти </button>
             </form>
         </div>
     </nav>
