@@ -38,7 +38,7 @@ function buyOne() {
             body: JSON.stringify(data)
         };
         await fetch(baseUrl+"/purchase/id", options);
-        window.location.href = baseUrl + "/purchase";
+        window.location.href = baseUrl + "/purchases";
     });
 }
 deleteOne();
