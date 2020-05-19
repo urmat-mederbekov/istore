@@ -1,11 +1,11 @@
 package kg.attractor.istore.repository;
 
-import kg.attractor.istore.model.Cart;
 import kg.attractor.istore.model.Purchase;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
 public interface PurchaseRepo extends JpaRepository<Purchase, Integer> {
-    List<Purchase> findAllByCustomerId(Integer id);
+    Page<Purchase> findAllByCustomerId(Integer id, Pageable pageable);
+    boolean existsByCustomerId(Integer id);
 }
