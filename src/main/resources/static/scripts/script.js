@@ -38,8 +38,7 @@ async function load(){
         card.className = 'card d-inline-block';
         card.style.width = '18rem';
         card.innerHTML =
-            `
-                <img class="card-img-top" style="height: 65%" src="/images/${type.icon}" alt="Card image cap">
+            `   <img class="card-img-top" style="height: 65%" src="/images/${type.icon}" alt="Card image cap">
                 <div class="card-body"">
                 <h5 class="card-title">${type.name}</h5>
                 </div>
