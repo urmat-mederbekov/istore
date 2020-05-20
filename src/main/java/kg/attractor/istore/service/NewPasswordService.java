@@ -16,6 +16,7 @@ public class NewPasswordService {
 
     private final NewPasswordRepo newPasswordRepo;
     private final CustomerRepo customerRepo;
+    private final EmailServiceImpl emailService;
 
     public void createToken(String email){
 
@@ -27,6 +28,9 @@ public class NewPasswordService {
 
         newPasswordRepo.deleteAll();
         newPasswordRepo.save(token);
+
+        emailService.sendSimpleMessage(customer.getEmail(), "Istore | Password Recovery",
+                "Here is your token: " + token.getToken());
     }
 
     public boolean existsByToken(String token){
