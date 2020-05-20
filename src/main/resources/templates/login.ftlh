@@ -3,9 +3,7 @@
 <@main.renderWith>
 <#--<@main.renderWith scripts=["scripts/login.js"]>-->
 
-    <div class="mx-3">
-        <h2>Please sign in</h2>
-
+    <div class="mx-auto mt-3 w-50">
         <form id="login-form" action="/login" method="post">
 <#--    <form id="login-form">-->
             <div>

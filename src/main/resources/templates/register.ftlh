@@ -1,8 +1,8 @@
 <#import "partials/main.ftlh" as main />
 
 <@main.renderWith scripts=["scripts/registration.js"]>
-    <h2>Please register</h2>
-    <div class="mx-3">
+
+    <div class="mx-auto mt-3 w-50">
         <form id="registration-form">
 
             <h3>Регистрация</h3>
