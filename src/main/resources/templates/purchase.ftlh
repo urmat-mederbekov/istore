@@ -1,4 +1,5 @@
 <#import "partials/main.ftlh" as main />
+<#import "/spring.ftl" as spring>
 
 <@main.renderWith>
 
@@ -9,9 +10,9 @@
     <thead class="thead-dark">
     <tr>
         <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Price</th>
+        <th scope="col"><@spring.message "col.name" /></th>
+        <th scope="col"><@spring.message "col.quantity" /></th>
+        <th scope="col"><@spring.message "col.price" /></th>
     </tr>
     </thead>
     <#list items as item>
@@ -26,11 +27,11 @@
 </#list>
 </table>
 <#else>
-    <p>тут ничего нет!</p>
+    <p><@spring.message "table.empty" /></p>
 </#if>
     <#include "partials/pagination.ftlh">
 <div>
-    <a href="/">назад</a>
+    <a href="/"><@spring.message "link.back" /></a>
 </div>
 
 </@main.renderWith>

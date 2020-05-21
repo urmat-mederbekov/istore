@@ -1,11 +1,12 @@
+<#import "/spring.ftl" as spring>
 <#--
  объявляем макро-функцию используя которую мы создадим шаблон страницы
  https://freemarker.apache.org/docs/dgui_misc_userdefdir.html
  -->
-<#macro renderWith title="Welcome to EduFood! Your one stop shop to purchase food!" scripts=[] styles=[]>
+<#macro renderWith dir="ltr" scripts=[] styles=[]>
     <!doctype html>
     <!doctype html>
-    <html lang="en">
+    <html lang="${.locale}" dir="${dir}">
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -56,17 +57,31 @@
                 <img src="/images/apple_logo.png" class="d-block mx-auto" role="img" height="24" width="24" alt="">
             </a>
 
-            <a class="py-2 d-none d-md-inline-block" href="/register">Register</a>
-            <a class="py-2 d-none d-md-inline-block" href="/login">Login</a>
-            <a class="py-2 d-none d-md-inline-block" href="/cart">Cart</a>
-            <a class="py-2 d-none d-md-inline-block" href="/purchases">Purchases</a>
-            <a class="py-2 d-none d-md-inline-block" href="/profile">Profile</a>
+            <a class="py-2 d-none d-md-inline-block" href="/register"><@spring.message "nav.register" /></a>
+            <a class="py-2 d-none d-md-inline-block" href="/login"><@spring.message "nav.login" /></a>
+            <a class="py-2 d-none d-md-inline-block" href="/cart"><@spring.message "nav.cart" /></a>
+            <a class="py-2 d-none d-md-inline-block" href="/purchases"><@spring.message "nav.purchases" /></a>
+            <a class="py-2 d-none d-md-inline-block" href="/profile"><@spring.message "nav.profile" /></a>
 
             <form class="flex box-128" action="/logout" method="post">
                 <#if _csrf??>
                     <input type="hidden" name="${(_csrf.parameterName)!'csrf'}" value="${(_csrf.token)!'--no-token--'}"/>
                 </#if>
-                <button class="py-2 d-none d-md-inline-block logout-button">Выйти </button>
+                <button class="py-2 d-none d-md-inline-block logout-button">
+                    <@spring.message "nav.logout" />
+                </button>
+            </form>
+            <form action="" method="get">
+                <label for="lang_select">
+                    <@spring.message "label.language" />:
+                </label>
+                <select name="lang" id="lang_select">
+                    <option value="en">English</option>
+                    <option value="ru">Русский</option>
+                </select>
+                <button type="submit">
+                    <@spring.message "button.language-change.text" />
+                </button>
             </form>
         </div>
     </nav>

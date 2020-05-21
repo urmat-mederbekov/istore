@@ -1,7 +1,8 @@
 <#import "partials/main.ftlh" as main />
+<#import "/spring.ftl" as spring>
 
 <@main.renderWith>
-    <h2>Please enter email to reset password</h2>
+    <h2><@spring.message "header.enter_email" /></h2>
     <div>
     <form action="/forgot-password" method="post">
 
@@ -11,16 +12,16 @@
 
         <div>
             <label class="flex flex-v-center">
-                <p class="label-input-text">Адрес почты:</p>
-                <input type="text" name="email" placeholder="ваш адрес почты" >
+<#--                <p class="label-input-text">Адрес почты:</p>-->
+                <input type="text" name="email" placeholder="<@spring.message "form.input.email" />" >
             </label>
         </div>
         <div>
-            <button type="submit">Отправить</button>
+            <button type="submit"><@spring.message "form.button.submit" /></button>
         </div>
         <div>
             <#if errors?? >
-                <p>Входные данные с ошибками!</p>
+                <p><@spring.message "error.input_data" /></p>
                 <#list errors as fieldError>
                     <p>${fieldError.field} - ${fieldError.defaultMessage!'-- no message --'}</p>
                 </#list>
@@ -29,6 +30,6 @@
     </form>
     </div>
     <div class="bottom-box">
-        <a href="/">На главную страницу</a>
+        <a href="/"><@spring.message "link.back" /></a>
     </div>
 </@main.renderWith>

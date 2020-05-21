@@ -1,16 +1,17 @@
 <#import "partials/main.ftlh" as main />
+<#import "/spring.ftl" as spring>
 
 <@main.renderWith>
 
-<h1>Ваши покупки</h1>
+<h1><@spring.message "header.your_purchases" /></h1>
 <div id="cart"></div>
 <#if items??>
 <table class="table">
     <thead class="thead-dark">
     <tr>
         <th scope="col">#</th>
-        <th scope="col">Customer</th>
-        <th scope="col">Review</th>
+        <th scope="col"><@spring.message "col.customer" /></th>
+        <th scope="col"><@spring.message "col.review" /></th>
     </tr>
     </thead>
     <#list items as item>
@@ -35,11 +36,11 @@
 
 
             <input type="text" name="text">
-            <button type="submit">Submit</button>
+            <button type="submit"><@spring.message "form.button.submit" /></button>
         </form>
 <#--    </#if>-->
 <div>
-    <a href="/">назад</a>
+    <a href="/"><@spring.message "link.back" /></a>
 </div>
 
 </@main.renderWith>

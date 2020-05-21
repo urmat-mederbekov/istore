@@ -1,3 +1,4 @@
+<#import "/spring.ftl" as spring>
 <#import "partials/main.ftlh" as main />
 
 <@main.renderWith scripts=["scripts/product.js"]>
@@ -12,8 +13,8 @@
                     <p class="card-text">${item.description}</p>
                     <p class="card-text"><b>Price</b>: ${item.price}$</p>
                     <div>
-                        <a href="#" class="addToCart btn btn-primary">Add to cart</a>
-                        <a href="/products/${item.id}/reviews" class="review btn btn-warning">Reviews</a>
+                        <a href="#" class="addToCart btn btn-primary"><@spring.message "link.add_to_cart" /></a>
+                        <a href="/products/${item.id}/reviews" class="review btn btn-warning"><@spring.message "link.reviews" /></a>
                         <input type="number" class="quantity" name="quantity" value="1">
                     </div>
                 </div>
